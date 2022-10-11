@@ -7,7 +7,7 @@ const EpisodeList = ({episodeList}) => {
   return (
     <div>
         <h1>Episode page</h1>
-        {episodeList.results.map((episode)=>{
+        {episodeList.map((episode)=>{
             return(
                 <div key={episode.id}>
                     <Link href={`/episodes/${episode.id}`}>
@@ -30,7 +30,7 @@ export async function getStaticProps() {
     const {data}= await axios.get("https://rickandmortyapi.com/api/episode")
     return{
         props:{
-            episodeList: data
+            episodeList: data.results.slice(0,3)
         }
     }
 }
